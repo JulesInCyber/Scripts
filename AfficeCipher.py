@@ -39,4 +39,3 @@ def decode_affine(key_a, key_b, ciphertext):
     print(clear_text)
     return clear_text
 
-print(decode_affine(3,10,"Fkrra Ywrp"))
