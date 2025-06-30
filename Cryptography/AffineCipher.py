@@ -1,4 +1,5 @@
 import random
+from termcolor import colored
 import sys
 
 # message = sys.argv[1]
@@ -18,7 +19,7 @@ def encode_affine(cleartext):
         else:
             cipher.append(letter)
     cipher_text =  "".join(cipher)
-    print(f"\t[!] Encryption Key: ({a},{b})\n\n\t[!] Encoded Message: {cipher_text}")
+    print(f"\t[+] Encryption Key: ({a},{b})\n\n\t[+] Encoded Message: {cipher_text}")
     return cipher_text 
 
 def decode_affine(key_a, key_b, ciphertext):
@@ -36,6 +37,7 @@ def decode_affine(key_a, key_b, ciphertext):
         else:
             clear.append(letter)
     clear_text = "".join(clear)
-    print(clear_text)
+    print(f"[+] Key used for encryption; ({key_a}, {key_b})")
+    print(f"[+] decoded Message: {clear_text}")
     return clear_text
 
