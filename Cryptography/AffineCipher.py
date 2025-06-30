@@ -2,8 +2,6 @@ import random
 from termcolor import colored
 import sys
 
-# message = sys.argv[1]
-
 a_tup = ((1,1),(3,9),(5,21),(7,15),(9,3),(11,19),(15,7),(17,23),(19,11),(21,5),(23,17),(25,25))
 
 def encode_affine(cleartext):
@@ -40,4 +38,30 @@ def decode_affine(key_a, key_b, ciphertext):
     print(f"[+] Key used for encryption; ({key_a}, {key_b})")
     print(f"[+] decoded Message: {clear_text}")
     return clear_text
+
+prog_option = sys.argv[1]
+
+def main():
+    if prog_option == "-e":
+        try:
+            message = sys.argv[2]
+            encode_affine(message)
+        except:
+            print("[?] No Message specified!")
+    elif prog_option == "-d":
+        try:
+            key_a = int(sys.argv[2])
+            key_b = int(sys.argv[3])
+            message = sys.argv[4]
+            decode_affine(key_a, key_b, message)
+        except:
+            print("[?] Missing arguments")
+    elif prog_option == "-h":
+        print("help")  
+    else:
+        print("[!] Unknown Option. Use '-h' for help")
+
+
+if __name__ =='__main__':
+    main()
 
