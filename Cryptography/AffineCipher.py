@@ -57,7 +57,15 @@ def main():
         except:
             print("[?] Missing arguments")
     elif prog_option == "-h":
-        print("help")  
+        print("[~] Usage: AffineCypher.py [OPTION] [Arguments] \n\n")
+        # Encrypting
+        print("-e\tEncryption mode\n" \
+        "\tRandomly key values\n" \
+        "\tUsage: AffineCypher.py -e 'Hello World!'\n")
+        # Decrypting
+        print("-d\tDecryption mode\n" \
+        "\tDecrypts a message with a provided key\n" \
+        "\tUsage: AffineCipher.py -d key_a key_b 'Cipher Text'")
     else:
         print("[!] Unknown Option. Use '-h' for help")
 
