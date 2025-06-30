@@ -1,6 +1,7 @@
 import random
 from termcolor import colored
 import sys
+import time
 
 a_tup = ((1,1),(3,9),(5,21),(7,15),(9,3),(11,19),(15,7),(17,23),(19,11),(21,5),(23,17),(25,25))
 
@@ -39,6 +40,23 @@ def decode_affine(key_a, key_b, ciphertext):
     print(f"[+] decoded Message: {clear_text}")
     return clear_text
 
+def bruteforce(ciphertext):
+    for a, a_inv in a_tup:
+        for b_key in range(0,26):
+            clear = []
+            for letter in ciphertext.upper():
+                if ord(letter) in range(65,91):
+                    y = ord(letter) - ord("A")
+                    c = a_inv * (y - b_key) % 26
+                    c_letter = chr(c + ord("A"))
+                    clear.append(c_letter)
+                else:
+                    clear.append(letter)
+            clear_text = "".join(clear)
+            print(f"[~] Decoding using key ({a:>2}, {b_key:>2}):\t" + clear_text)
+            time.sleep(0.75)
+    return clear_text
+
 prog_option = sys.argv[1]
 
 def main():
@@ -48,6 +66,12 @@ def main():
             encode_affine(message)
         except:
             print("[?] No Message specified!")
+    elif prog_option == "-b":
+        try:
+            message = sys.argv[2]
+            bruteforce(message)
+        except:
+            print("Program Interrupted by user")
     elif prog_option == "-d":
         try:
             key_a = int(sys.argv[2])
